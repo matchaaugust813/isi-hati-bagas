@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passcode Kejutan</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ffd1dc, #d1e8ff);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo {
+            width: 200px;
+            height: 250px;
+            border-radius: 10px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .input-box {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        #passcode {
+            width: 160px;
+            height: 40px;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .numpad button {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background: #f8b3c9;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .numpad button:hover {
+            background: #f191b2;
+        }
+
+        .numpad .clear {
+            background: #ff6363;
+        }
+
+        .numpad .clear:hover {
+            background: #d14c4c;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="IMG-20250218-WA0012.jpg" alt="Foto Bagas & May" class="photo">
+
+        <div class="input-box">
+            <h2>Masukkan Passcode</h2>
+            <input type="password" id="passcode" maxlength="6" readonly>
+            <div class="numpad">
+                <button onclick="enterNumber(1)">1</button>
+                <button onclick="enterNumber(2)">2</button>
+                <button onclick="enterNumber(3)">3</button>
+                <button onclick="enterNumber(4)">4</button>
+                <button onclick="enterNumber(5)">5</button>
+                <button onclick="enterNumber(6)">6</button>
+                <button onclick="enterNumber(7)">7</button>
+                <button onclick="enterNumber(8)">8</button>
+                <button onclick="enterNumber(9)">9</button>
+                <button class="clear" onclick="clearPasscode()">C</button>
+                <button onclick="enterNumber(0)">0</button>
+                <button onclick="checkPasscode()">✔</button>
+            </div>
+            <p class="error" id="error-message">Passcode salah!</p>
+        </div>
+    </div>
+
+    <script>
+        let inputPasscode = "";
+
+        function enterNumber(num) {
+            if (inputPasscode.length < 6) {
+                inputPasscode += num;
+                document.getElementById("passcode").value = inputPasscode;
+            }
+        }
+
+        function clearPasscode() {
+            inputPasscode = "";
+            document.getElementById("passcode").value = "";
+            document.getElementById("error-message").style.display = "none";
+        }
+
+        function checkPasscode() {
+            if (inputPasscode === "150225") {
+                window.location.href = "kejutan.html"; // Ganti dengan halaman kejutan
+            } else {
+                document.getElementById("error-message").style.display = "block";
+                clearPasscode();
+            }
+        }
+    </script>
+
+</body>
+</html>
